@@ -1,9 +1,6 @@
 package ie.atu.oop2week3;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping
@@ -27,5 +24,14 @@ public class RequestController {
         return "Hello " + name;
     }
 
+    @GetMapping("/details")
+    public String details(@RequestParam String name, @RequestParam int age) {
+        return "Name: " + name + ", Age: " + age;
+    }
+
+    @GetMapping("/person")
+    public Person getPerson() {
+        return new Person("Stephen", 22);
+    }
 
 }
