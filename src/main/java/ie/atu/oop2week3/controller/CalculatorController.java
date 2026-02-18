@@ -1,7 +1,9 @@
 package ie.atu.oop2week3.controller;
 
 import ie.atu.oop2week3.service.CalculatorService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,8 +17,18 @@ public class CalculatorController {
     }
 
         @GetMapping("/add")
-        public String add(String a, String b) {
-            return "";
+        public ResponseEntity<Integer> add(@RequestParam int  a, @RequestParam int b) {
+            int result = calculatorService.add(a, b);
+            return ResponseEntity.ok(result);
+        }
+
+        @GetMapping("/divide")
+        public ResponseEntity<?> divide(@RequestParam int  a, @RequestParam int b) {
+            if (b == 0) {
+                return ResponseEntity.badRequest().body("Division by zero is not allowed");
+            }
+            int result = calculatorService.divide(a, b);
+            return ResponseEntity.ok(result);
         }
     }
 
