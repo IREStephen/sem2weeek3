@@ -18,10 +18,9 @@ public class MathController {
     public ResponseEntity<?> subtract(@RequestParam int a,
                                       @RequestParam int b) {
 
-        // Rule: a must be greater than or equal to b
         if (a < b) {
             return ResponseEntity.badRequest()
-                    .body("a must be greater than or equal to b");
+                    .body("a must be greater than or equal to b >:(");
         }
 
         int result = mathService.subtract(a, b);
